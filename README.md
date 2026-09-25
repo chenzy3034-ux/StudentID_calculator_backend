@@ -12,6 +12,18 @@ a restricted tokenizer, recursive-descent parser, and `Decimal` evaluator. The
 project does not use `eval`, `exec`, `compile`, or another mechanism that
 executes user input as Python code.
 
+## Public deployment
+
+- Backend API: `https://chenzy.pythonanywhere.com`
+- Health check: `https://chenzy.pythonanywhere.com/health`
+- Frontend: `https://chenzy3034-ux.github.io/StudentID_calculator_frontend/`
+
+The backend is deployed on the free PythonAnywhere plan as an ASGI website. Its
+SQLite database is stored at
+`/home/Chenzy/StudentID_calculator_backend/data/calculator.db`, which is inside
+the account's persistent home storage and remains available across application
+reloads.
+
 ## Technology stack
 
 - Python 3.12
@@ -132,6 +144,43 @@ Expected response:
 
 Stop the server with `Control-C`.
 
+## PythonAnywhere deployment
+
+The account must have an API token generated from **Account > API token**.
+PythonAnywhere makes that token available to commands running in its own Bash
+consoles, so the token must not be copied into this repository.
+
+For a first deployment, open a fresh PythonAnywhere Bash console and run:
+
+```sh
+git clone https://github.com/chenzy3034-ux/StudentID_calculator_backend.git
+bash "$HOME/StudentID_calculator_backend/deploy/pythonanywhere_setup.sh"
+```
+
+The script creates a Python 3.10 virtual environment, installs the runtime
+dependencies, creates the persistent data directory, installs PythonAnywhere's
+official `pa` command, and creates the ASGI website. The stored Uvicorn command
+sets these production values:
+
+```text
+CALCULATOR_DATABASE_PATH=/home/Chenzy/StudentID_calculator_backend/data/calculator.db
+CALCULATOR_CORS_ORIGINS=https://chenzy3034-ux.github.io
+```
+
+After later code updates, run the following in a PythonAnywhere Bash console:
+
+```sh
+cd "$HOME/StudentID_calculator_backend"
+git pull
+"$HOME/.local/bin/pa" website reload --domain chenzy.pythonanywhere.com
+```
+
+PythonAnywhere serves the account subdomain over HTTPS. The free plan has CPU,
+storage, and outbound-network limits suitable for this assignment's light
+grading traffic. The ASGI hosting interface is currently described by
+PythonAnywhere as beta, so use the `pa website get` command and the logs under
+`/var/log/chenzy.pythonanywhere.com.*.log` when diagnosing deployment issues.
+
 ## API endpoints
 
 ### Calculate and save an expression
@@ -244,6 +293,7 @@ storage rules.
 │   ├── main.py              # FastAPI application and middleware
 │   └── schemas.py           # Request and response schemas
 ├── tests/                   # Unit, database, and API tests
+├── deploy/                  # PythonAnywhere deployment setup
 ├── codestyle.md             # Project Python style rules
 ├── requirements.txt         # Runtime dependencies
 └── requirements-dev.txt     # Runtime and test dependencies

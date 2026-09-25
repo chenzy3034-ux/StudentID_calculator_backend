@@ -5,7 +5,7 @@ set -euo pipefail
 APP_ROOT="$HOME/StudentID_calculator_backend"
 VENV_ROOT="$HOME/.virtualenvs/calculator-backend"
 DATABASE_PATH="$APP_ROOT/data/calculator.db"
-FRONTEND_ORIGIN="https://studentid-calculator-frontend.onrender.com"
+FRONTEND_ORIGIN="https://chenzy3034-ux.github.io"
 DOMAIN="chenzy.pythonanywhere.com"
 
 python3.10 -m venv "$VENV_ROOT"
