@@ -14,7 +14,7 @@ python3.10 -m venv "$VENV_ROOT"
 python3.10 -m pip install --user --upgrade pythonanywhere
 mkdir -p "$APP_ROOT/data"
 
-WEBSITE_COMMAND="env CALCULATOR_DATABASE_PATH=$DATABASE_PATH CALCULATOR_CORS_ORIGINS=$FRONTEND_ORIGIN $VENV_ROOT/bin/uvicorn --app-dir $APP_ROOT --uds \${DOMAIN_SOCKET} app.main:app"
+WEBSITE_COMMAND="/usr/bin/env CALCULATOR_DATABASE_PATH=$DATABASE_PATH CALCULATOR_CORS_ORIGINS=$FRONTEND_ORIGIN $VENV_ROOT/bin/uvicorn --app-dir $APP_ROOT --uds \${DOMAIN_SOCKET} app.main:app"
 
 "$HOME/.local/bin/pa" website create \
   --domain "$DOMAIN" \
