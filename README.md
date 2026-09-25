@@ -1,4 +1,4 @@
-# StudentID Calculator Backend
+# 832401306 Calculator Backend
 
 ## Project introduction
 
@@ -16,11 +16,11 @@ executes user input as Python code.
 
 - Backend API: `https://chenzy.pythonanywhere.com`
 - Health check: `https://chenzy.pythonanywhere.com/health`
-- Frontend: `https://chenzy3034-ux.github.io/StudentID_calculator_frontend/`
+- Frontend: `https://chenzy3034-ux.github.io/832401306_calculator_frontend/`
 
 The backend is deployed on the free PythonAnywhere plan as an ASGI website. Its
 SQLite database is stored at
-`/home/Chenzy/StudentID_calculator_backend/data/calculator.db`, which is inside
+`/home/Chenzy/832401306_calculator_backend/data/calculator.db`, which is inside
 the account's persistent home storage and remains available across application
 reloads.
 
@@ -54,7 +54,7 @@ python3 --version
 Run all commands in this repository's root directory:
 
 ```sh
-cd StudentID_calculator_backend
+cd 832401306_calculator_backend
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -153,8 +153,8 @@ consoles, so the token must not be copied into this repository.
 For a first deployment, open a fresh PythonAnywhere Bash console and run:
 
 ```sh
-git clone https://github.com/chenzy3034-ux/StudentID_calculator_backend.git
-bash "$HOME/StudentID_calculator_backend/deploy/pythonanywhere_setup.sh"
+git clone https://github.com/chenzy3034-ux/832401306_calculator_backend.git
+bash "$HOME/832401306_calculator_backend/deploy/pythonanywhere_setup.sh"
 ```
 
 The script creates a Python 3.10 virtual environment, installs the runtime
@@ -163,14 +163,14 @@ official `pa` command, and creates the ASGI website. The stored Uvicorn command
 sets these production values:
 
 ```text
-CALCULATOR_DATABASE_PATH=/home/Chenzy/StudentID_calculator_backend/data/calculator.db
+CALCULATOR_DATABASE_PATH=/home/Chenzy/832401306_calculator_backend/data/calculator.db
 CALCULATOR_CORS_ORIGINS=https://chenzy3034-ux.github.io
 ```
 
 After later code updates, run the following in a PythonAnywhere Bash console:
 
 ```sh
-cd "$HOME/StudentID_calculator_backend"
+cd "$HOME/832401306_calculator_backend"
 git pull
 "$HOME/.local/bin/pa" website reload --domain chenzy.pythonanywhere.com
 ```

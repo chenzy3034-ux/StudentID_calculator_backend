@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-APP_ROOT="$HOME/StudentID_calculator_backend"
+APP_ROOT="$HOME/832401306_calculator_backend"
 VENV_ROOT="$HOME/.virtualenvs/calculator-backend"
 DATABASE_PATH="$APP_ROOT/data/calculator.db"
 FRONTEND_ORIGIN="https://chenzy3034-ux.github.io"
